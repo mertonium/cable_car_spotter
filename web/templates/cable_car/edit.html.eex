@@ -1,0 +1,7 @@
+<h2>Edit cable car</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        lines: @lines,
+                        action: cable_car_path(@conn, :update, @cable_car) %>
+
+<%= link "Back", to: cable_car_path(@conn, :index) %>

@@ -1,0 +1,30 @@
+<h2>Listing cable cars</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Line</th>
+      <th>Car number</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for cable_car <- @cable_cars do %>
+    <tr>
+      <td><%= cable_car.line.title %></td>
+      <td><%= cable_car.car_number %></td>
+      <td><%= cable_car.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: cable_car_path(@conn, :show, cable_car), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: cable_car_path(@conn, :edit, cable_car), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: cable_car_path(@conn, :delete, cable_car), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New cable car", to: cable_car_path(@conn, :new) %>
