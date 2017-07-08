@@ -40,4 +40,4 @@ config :cable_car_spotter, CableCarSpotter.Repo,
   password: "c4bl3c4r",
   database: "cable_car_spotter_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 5
