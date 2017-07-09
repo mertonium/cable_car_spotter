@@ -36,6 +36,7 @@ defmodule CableCarSpotter.Web do
 
       import CableCarSpotter.Router.Helpers
       import CableCarSpotter.Gettext
+      import CableCarSpotter.Auth, only: [authenticate_user: 2]
     end
   end
 
@@ -58,6 +59,7 @@ defmodule CableCarSpotter.Web do
   def router do
     quote do
       use Phoenix.Router
+      import CableCarSpotter.Auth, only: [authenticate_user: 2, authenticate_admin: 2]
     end
   end
 

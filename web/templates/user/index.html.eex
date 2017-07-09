@@ -1,0 +1,20 @@
+<h2>Listing users</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td>
+        <%= link user.email, to: user_path(@conn, :show, user) %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New user", to: user_path(@conn, :new) %>
