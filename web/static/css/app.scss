@@ -1,0 +1,27 @@
+/* This file is for your main application css. */
+header.header {
+  background-color: #E3571C;
+
+  a {
+    color: #ffffff;
+  }
+}
+
+nav ul {
+  margin-top: 0;
+}
+
+.logo {
+  display: inline-block;
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+
+  h1 {
+    color: #ffffff;
+    font-size: 3em;
+  }
+}
+
+.the-big-button-box {
+  margin: 2em;
+}

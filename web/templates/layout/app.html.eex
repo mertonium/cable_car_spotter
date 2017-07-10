@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello CableCarSpotter!</title>
+    <title>Cable Car Spotter</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -27,7 +27,11 @@
             <% end %>
           </ul>
         </nav>
-        <span class="logo"></span>
+        <div class="logo">
+          <h1>
+            <%= link "Cable Car Spotting", to: page_path(@conn, :index) %>
+          </h1>
+        </div>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
