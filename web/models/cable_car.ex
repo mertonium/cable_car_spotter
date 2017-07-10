@@ -18,4 +18,12 @@ defmodule CableCarSpotter.CableCar do
     |> validate_required([:car_number, :description, :line_id])
     |> assoc_constraint(:line)
   end
+
+  def numbers_and_ids(query) do
+    from c in query, select: {c.car_number, c.id}
+  end
+
+  def by_car_number(query) do
+    from c in query, order_by: fragment("split_part(car_number, ' ', 2)::int")
+  end
 end

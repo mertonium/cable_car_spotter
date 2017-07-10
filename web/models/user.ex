@@ -6,6 +6,7 @@ defmodule CableCarSpotter.User do
     field :password_hash, :string
     field :password, :string,  virtual: true
     field :role, :string
+    has_many :sightings, CableCarSpotter.Sighting
 
     timestamps()
   end
@@ -17,6 +18,7 @@ defmodule CableCarSpotter.User do
     struct
     |> cast(params, [:email, :password])
     |> validate_required([:email, :password])
+    |> unique_constraint(:email)
   end
 
   def registration_changeset(model, params) do

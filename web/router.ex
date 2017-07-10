@@ -21,6 +21,7 @@ defmodule CableCarSpotter.Router do
     resources "/cable_cars", CableCarController, only: [:index, :show]
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/sightings", SightingController
   end
 
   scope "/admin", CableCarSpotter do

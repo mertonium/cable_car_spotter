@@ -1,0 +1,23 @@
+<h2>Show sighting</h2>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @sighting.user_id %>
+  </li>
+
+  <li>
+    <strong>Cable car:</strong>
+    <%= @sighting.cable_car_id %>
+  </li>
+
+  <li>
+    <strong>Comment:</strong>
+    <%= @sighting.comment %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: sighting_path(@conn, :edit, @sighting) %>
+<%= link "Back", to: sighting_path(@conn, :index) %>

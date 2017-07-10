@@ -1,0 +1,30 @@
+<h2>Listing sightings</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Cable car</th>
+      <th>Comment</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for sighting <- @sightings do %>
+    <tr>
+      <td><%= sighting.user_id %></td>
+      <td><%= sighting.cable_car_id %></td>
+      <td><%= sighting.comment %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: sighting_path(@conn, :show, sighting), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: sighting_path(@conn, :edit, sighting), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: sighting_path(@conn, :delete, sighting), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New sighting", to: sighting_path(@conn, :new) %>
