@@ -8,30 +8,47 @@
     <meta name="author" content="">
 
     <title>Cable Car Spotter</title>
+    <link href="https://fonts.googleapis.com/css?family=Tinos" rel="stylesheet">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <%= if @current_user do %>
-              <li><%= @current_user.email %></li>
-              <li>
-                <%= link "Log out", to: session_path(@conn, :delete, @current_user), method: "delete" %>
-              </li>
-            <% else %>
-              <li><%= link "Register", to: user_path(@conn, :new) %></li>
-              <li><%= link "Log in", to: session_path(@conn, :new) %></li>
-            <% end %>
-          </ul>
+      <header>
+        <nav class="navbar navbar-ccs navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ccs-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <%= link "Cable Car Spotter", to: page_path(@conn, :index), class: "navbar-brand" %>
+            </div>
+            <div class="navbar-collapse collapse" id="ccs-navbar" aria-expanded="false" style="height: 1px;">
+              <ul class="nav navbar-nav navbar-right">
+                <%= if @current_user do %>
+                  <li>
+                    <%= link "Spot it!", to: sighting_path(@conn, :new) %>
+                  </li>
+                  <li>
+                    <%= link "Your sightings", to: sighting_path(@conn, :index) %>
+                  </li>
+                  <li>
+                    <%= link @current_user.email, to: user_path(@conn, :show, @current_user) %>
+                  </li>
+                  <li>
+                    <%= link "Log out", to: session_path(@conn, :delete, @current_user), method: "delete" %>
+                  </li>
+                <% else %>
+                  <li><%= link "Register", to: user_path(@conn, :new) %></li>
+                  <li><%= link "Log in", to: session_path(@conn, :new) %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
         </nav>
-        <div class="logo">
-          <h1>
-            <%= link "Cable Car Spotting", to: page_path(@conn, :index) %>
-          </h1>
-        </div>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

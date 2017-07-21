@@ -10,5 +10,8 @@
   <%= submit "Log in", class: "btn btn-primary" %>
 <% end %>
 
+<p>
+  Don't have an account? <%= link "Sign up for free", to: user_path(@conn, :new) %>
+</p>
 
 

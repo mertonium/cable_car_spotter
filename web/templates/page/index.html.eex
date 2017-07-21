@@ -1,5 +1,5 @@
 <div class="container">
   <div class="the-big-button-box">
-    <%= link "I seen one!", to: sighting_path(@conn, :new), class: "btn btn-lg btn-default center-block" %>
+    <%= link "Spot it!", to: sighting_path(@conn, :new), class: "btn btn-lg btn-default center-block" %>
   </div>
 </div>

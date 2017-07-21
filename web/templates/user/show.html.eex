@@ -8,11 +8,9 @@
   </li>
 
   <li>
-    <strong>Password hash:</strong>
-    <%= @user.password_hash %>
+    <strong>Account created:</strong>
+    <%= @user.inserted_at %>
   </li>
 
 </ul>
 
-<%= link "Edit", to: user_path(@conn, :edit, @user) %>
-<%= link "Back", to: user_path(@conn, :index) %>
