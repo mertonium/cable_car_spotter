@@ -3,11 +3,14 @@ defmodule CableCarSpotter.SightingController do
   alias CableCarSpotter.Sighting
   alias CableCarSpotter.CableCar
 
-  plug :load_cable_cars
+  plug :load_cable_cars, except: [:index]
   plug :authenticate_user
 
   def index(conn, _params, user) do
-    sightings = Repo.all(Sighting)
+    sightings =
+      Repo.all(user_sightings(user))
+      |> Repo.preload(:cable_car)
+
     render(conn, "index.html", sightings: sightings)
   end
 
@@ -37,18 +40,18 @@ defmodule CableCarSpotter.SightingController do
   end
 
   def show(conn, %{"id" => id}, user) do
-    sighting = Repo.get!(Sighting, id)
+    sighting = Repo.get!(user_sightings(user), id)
     render(conn, "show.html", sighting: sighting)
   end
 
   def edit(conn, %{"id" => id}, user) do
-    sighting = Repo.get!(Sighting, id)
+    sighting = Repo.get!(user_sightings(user), id)
     changeset = Sighting.changeset(sighting)
     render(conn, "edit.html", sighting: sighting, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "sighting" => sighting_params}, user) do
-    sighting = Repo.get!(Sighting, id)
+    sighting = Repo.get!(user_sightings(user), id)
     changeset = Sighting.changeset(sighting, sighting_params)
 
     case Repo.update(changeset) do
@@ -62,7 +65,7 @@ defmodule CableCarSpotter.SightingController do
   end
 
   def delete(conn, %{"id" => id}, user) do
-    sighting = Repo.get!(Sighting, id)
+    sighting = Repo.get!(user_sightings(user), id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
@@ -85,5 +88,9 @@ defmodule CableCarSpotter.SightingController do
       |> CableCar.numbers_and_ids
     cable_cars = Repo.all query
     assign(conn, :cable_cars, cable_cars)
+  end
+
+  defp user_sightings(user) do
+    assoc(user, :sightings)
   end
 end
