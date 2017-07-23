@@ -5,7 +5,7 @@
     <li class="media">
       <div class="media-left">
         <%= link to: sighting_path(@conn, :show, sighting) do  %>
-          <img class="media-object" src="http://via.placeholder.com/150x100" alt="">
+          <img class="media-object img-responsive" style="min-width: 150px" src="<%= CableCarSpotter.Photo.url({sighting.photo, sighting}, :original) %>" alt="">
         <% end %>
       </div>
       <div class="media-body">

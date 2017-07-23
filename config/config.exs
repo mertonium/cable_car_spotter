@@ -22,6 +22,22 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :arc,
+  storage: Arc.Storage.S3,
+  bucket: {:system, "CCS_BUCKET_NAME"},
+  virtual_host: true
+
+config :ex_aws,
+  access_key_id: System.get_env("CCS_AWS_ACCESS_KEY_ID"),
+  secret_access_key: System.get_env("CCS_AWS_SECRET_ACCESS_KEY"),
+  region: "us-west-2",
+  host: "s3-us-west-2.amazonaws.com",
+  s3: [
+    scheme: "https://",
+    host: "s3-us-west-2.amazonaws.com",
+    region: "us-west-2"
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
