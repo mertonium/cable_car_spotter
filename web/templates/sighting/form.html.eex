@@ -18,7 +18,7 @@
   </div>
   <div class="form-group">
     <%= label f, :comment, class: "control-label" %>
-    <%= text_input f, :comment, class: "form-control" %>
+    <%= textarea f, :comment, class: "form-control" %>
     <%= error_tag f, :comment %>
   </div>
 
