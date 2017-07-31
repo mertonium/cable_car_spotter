@@ -19,7 +19,7 @@ for line <- ["Powell Street", "California Street"] do
 end
 
 csv_cars =
-  File.stream!("/Users/mertonium/Documents/cable_cars.csv")
+  File.stream!("priv/repo/cable_cars.csv")
   |> CSV.decode(separator: ?|, headers: ["line_id","car_number","description"])
 
 for car <- csv_cars do
