@@ -19,7 +19,7 @@ defmodule CableCarSpotter.Router do
 
     get "/", PageController, :index
     resources "/c", CableCarController, only: [:index, :show]
-    resources "/u", UserController, only: [:index, :show, :new, :create]
+    resources "/u", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/s", SightingController
   end
@@ -27,6 +27,7 @@ defmodule CableCarSpotter.Router do
   scope "/admin", CableCarSpotter do
     pipe_through [:browser, :authenticate_admin]
     resources "/cable_cars", CableCarController
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.

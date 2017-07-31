@@ -34,6 +34,7 @@ defmodule CableCarSpotter.CableCarController do
 
   def show(conn, %{"id" => id}) do
     cable_car = Repo.get!(CableCar, id)
+      |> Repo.preload(:line)
     render(conn, "show.html", cable_car: cable_car)
   end
 

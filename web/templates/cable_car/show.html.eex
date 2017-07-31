@@ -1,23 +1,12 @@
-<h2>Show cable car</h2>
+<h2>
+  <%= @cable_car.car_number %>
+</h2>
 
-<ul>
+<h4>
+  <%= @cable_car.line.title %>
+</h4>
 
-  <li>
-    <strong>Line:</strong>
-    <%= @cable_car.line_id %>
-  </li>
-
-  <li>
-    <strong>Car number:</strong>
-    <%= @cable_car.car_number %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @cable_car.description %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: cable_car_path(@conn, :edit, @cable_car) %>
-<%= link "Back", to: cable_car_path(@conn, :index) %>
+<p>
+  <%= @cable_car.description %>
+</p>
+<%= link "See all Cable Cars", to: cable_car_path(@conn, :index) %>

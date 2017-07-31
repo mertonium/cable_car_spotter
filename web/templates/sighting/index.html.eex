@@ -1,22 +1,29 @@
 <h2>Your Sightings</h2>
 
-<ul class="media-list">
-  <%= for sighting <- @sightings do %>
-    <li class="media">
-      <div class="media-left">
-        <%= link to: sighting_path(@conn, :show, sighting) do  %>
-          <img class="media-object img-responsive" style="min-width: 150px" src="<%= CableCarSpotter.Photo.url({sighting.photo, sighting}, :original) %>" alt="">
-        <% end %>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">
-          <%= sighting.cable_car.car_number %>
-        </h4>
-        <em><%= sighting.inserted_at %></em>
-        <br>
-        <%= sighting.comment %>
-      </div>
-    </li>
-  <% end %>
-</ul>
+<%= if Enum.count(@sightings) > 0 do %>
+  <ul class="media-list">
+    <%= for sighting <- @sightings do %>
+      <li class="media">
+        <div class="media-left">
+          <%= link to: sighting_path(@conn, :show, sighting) do  %>
+            <img class="media-object img-responsive" style="min-width: 150px" src="<%= CableCarSpotter.Photo.url({sighting.photo, sighting}, :original) %>" alt="">
+          <% end %>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= sighting.cable_car.car_number %>
+          </h4>
+          <em><%= sighting.inserted_at %></em>
+          <br>
+          <%= sighting.comment %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No sightings yet :(</p>
+  <div class="the-big-button-box">
+    <%= link "Spot it!", to: sighting_path(@conn, :new), class: "btn btn-lg btn-default center-block" %>
+  </div>
 
+<% end %>
