@@ -26,6 +26,7 @@ defmodule CableCarSpotter.ConnCase do
       import Ecto.Query
 
       import CableCarSpotter.Router.Helpers
+      import CableCarSpotter.TestHelpers
 
       # The default endpoint for testing
       @endpoint CableCarSpotter.Endpoint
