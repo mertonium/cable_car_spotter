@@ -33,4 +33,10 @@ defmodule CableCarSpotter.TestHelpers do
     |> Repo.insert!()
   end
 
+  def insert_sighting(attrs \\ %{}) do
+    %CableCarSpotter.Sighting{}
+    |> CableCarSpotter.Sighting.changeset(attrs)
+    |> Repo.insert!
+  end
+
 end
