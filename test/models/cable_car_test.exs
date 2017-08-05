@@ -1,9 +1,13 @@
 defmodule CableCarSpotter.CableCarTest do
-  use CableCarSpotter.ModelCase
+  use CableCarSpotter.ModelCase, async: true
 
   alias CableCarSpotter.CableCar
 
-  @valid_attrs %{car_number: "some content", description: "some content"}
+  @valid_attrs %{
+    car_number: "No. 187",
+    description: "Probably some long description on the history of this cable car.",
+    line_id: 1
+  }
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

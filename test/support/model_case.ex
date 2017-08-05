@@ -21,6 +21,7 @@ defmodule CableCarSpotter.ModelCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import CableCarSpotter.TestHelpers
       import CableCarSpotter.ModelCase
     end
   end

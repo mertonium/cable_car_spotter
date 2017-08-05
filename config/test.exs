@@ -17,3 +17,6 @@ config :cable_car_spotter, CableCarSpotter.Repo,
   database: "cable_car_spotter_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1

@@ -78,4 +78,25 @@ defmodule CableCarSpotter.SightingControllerTest do
     refute String.contains?(conn.resp_body, sighting2.comment)
   end
 
+  @tag login_as: "j@tubbs.io"
+  test "authorizes actions against access by other users", %{user: owner, conn: conn, cable_car: cable_car} do
+
+    sighting = insert_sighting(%{user_id: owner.id, cable_car_id: cable_car.id})
+    non_owner = insert_user()
+    conn = assign(conn, :current_user, non_owner)
+
+    assert_error_sent :not_found, fn ->
+      get(conn, sighting_path(conn, :show, sighting))
+    end
+    assert_error_sent :not_found, fn ->
+      get(conn, sighting_path(conn, :edit, sighting))
+    end
+    assert_error_sent :not_found, fn ->
+      put(conn, sighting_path(conn, :update, sighting, sighting: %{comment: "yo"}))
+    end
+    assert_error_sent :not_found, fn ->
+      delete(conn, sighting_path(conn, :delete, sighting))
+    end
+  end
+
 end

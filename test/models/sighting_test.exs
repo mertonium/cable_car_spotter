@@ -3,7 +3,7 @@ defmodule CableCarSpotter.SightingTest do
 
   alias CableCarSpotter.Sighting
 
-  @valid_attrs %{comment: "some content"}
+  @valid_attrs %{user_id: 1, cable_car_id: 2, comment: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
