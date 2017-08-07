@@ -1,0 +1,209 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: web/templates/user/show.html.eex:11
+msgid "Account created:"
+msgstr ""
+
+#: web/templates/cable_car/index.html.eex:1
+#: web/templates/cable_car/show.html.eex:12
+msgid "All Cable Cars"
+msgstr ""
+
+#: web/templates/user/index.html.eex:1
+msgid "All users"
+msgstr ""
+
+#: web/templates/sighting/show.html.eex:19
+msgid "Back to all your sightings"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:26 web/templates/layout/app.html.eex:43
+msgid "Cable Car Spotter"
+msgstr ""
+
+#: web/controllers/cable_car_controller.ex:28
+msgid "Cable car created successfully."
+msgstr ""
+
+#: web/controllers/cable_car_controller.ex:69
+msgid "Cable car deleted successfully."
+msgstr ""
+
+#: web/controllers/cable_car_controller.ex:54
+msgid "Cable car updated successfully."
+msgstr ""
+
+#: web/templates/sighting/edit.html.eex:9 web/templates/user/edit.html.eex:6
+msgid "Cancel"
+msgstr ""
+
+#: web/templates/cable_car/index.html.eex:6
+msgid "Car number"
+msgstr ""
+
+#: web/templates/session/new.html.eex:14
+msgid "Don't have an account?"
+msgstr ""
+
+#: web/templates/sighting/show.html.eex:17
+msgid "Edit"
+msgstr ""
+
+#: web/templates/sighting/edit.html.eex:2
+msgid "Edit sighting"
+msgstr ""
+
+#: web/templates/user/edit.html.eex:1
+msgid "Edit user"
+msgstr ""
+
+#: web/templates/user/index.html.eex:6
+msgid "Email"
+msgstr ""
+
+#: web/templates/user/show.html.eex:6
+msgid "Email:"
+msgstr ""
+
+#: web/templates/cable_car/index.html.eex:8
+msgid "History"
+msgstr ""
+
+#: web/templates/sighting/new.html.eex:2
+msgid "I saw a cable car!"
+msgstr ""
+
+#: web/controllers/session_controller.ex:16
+msgid "Invalid email/password combination"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:13
+msgid "Keep track of all the Cable Cars you see in San Francisco. See if you can collect them all!"
+msgstr ""
+
+#: web/templates/cable_car/index.html.eex:7
+msgid "Line"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:62
+msgid "Log in"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:58
+msgid "Log out"
+msgstr ""
+
+#: web/templates/session/new.html.eex:1 web/templates/session/new.html.eex:10
+msgid "Login"
+msgstr ""
+
+#: web/templates/sighting/new.html.eex:9
+msgid "Nevermind"
+msgstr ""
+
+#: web/templates/user/index.html.eex:20
+msgid "New user"
+msgstr ""
+
+#: web/templates/sighting/index.html.eex:27
+msgid "No sightings yet :("
+msgstr ""
+
+#: web/templates/sighting/form.html.eex:5 web/templates/user/form.html.eex:5
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr ""
+
+#: web/templates/layout/app.html.eex:61 web/templates/user/new.html.eex:2
+msgid "Register"
+msgstr ""
+
+#: web/templates/sighting/form.html.eex:29 web/templates/user/form.html.eex:23
+msgid "Save"
+msgstr ""
+
+#: web/templates/user/show.html.eex:1
+msgid "Show user"
+msgstr ""
+
+#: web/controllers/sighting_controller.ex:35
+msgid "Sighting created successfully."
+msgstr ""
+
+#: web/controllers/sighting_controller.ex:76
+msgid "Sighting deleted successfully."
+msgstr ""
+
+#: web/controllers/sighting_controller.ex:61
+msgid "Sighting updated successfully."
+msgstr ""
+
+#: web/templates/session/new.html.eex:15
+msgid "Sign up for free"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:12
+msgid "Spot all the Cable Cars in SF!"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:52 web/templates/page/index.html.eex:3
+#: web/templates/sighting/index.html.eex:30
+msgid "Spot it!"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:38
+msgid "Toggle navigation"
+msgstr ""
+
+#: web/controllers/user_controller.ex:24
+msgid "User created successfully."
+msgstr ""
+
+#: web/controllers/user_controller.ex:64
+msgid "User deleted successfully."
+msgstr ""
+
+#: web/controllers/user_controller.ex:49
+msgid "User updated successfully."
+msgstr ""
+
+#: web/controllers/session_controller.ex:12
+msgid "Welcome back!"
+msgstr ""
+
+#: web/controllers/auth.ex:67
+msgid "You are not allowed to access that page"
+msgstr ""
+
+#: web/controllers/auth.ex:56
+msgid "You must be logged in to access that page"
+msgstr ""
+
+#: web/templates/sighting/index.html.eex:2
+msgid "Your Sightings"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:55
+msgid "Your sightings"
+msgstr ""
+
+#: web/templates/session/new.html.eex:5
+msgid "email address"
+msgstr ""
+
+#: web/templates/session/new.html.eex:8
+msgid "password"
+msgstr ""
+
+#: web/templates/sighting/show.html.eex:9
+msgid "spotted on %{sighting_date}"
+msgstr ""
