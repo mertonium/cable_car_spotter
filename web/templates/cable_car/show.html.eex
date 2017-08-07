@@ -9,4 +9,4 @@
 <p>
   <%= @cable_car.description %>
 </p>
-<%= link "See all Cable Cars", to: cable_car_path(@conn, :index) %>
+<%= link gettext("All Cable Cars"), to: cable_car_path(@conn, :index, @locale) %>

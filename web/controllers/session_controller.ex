@@ -9,11 +9,11 @@ defmodule CableCarSpotter.SessionController do
     case CableCarSpotter.Auth.login_by_email_and_pass(conn, email, pass, repo: Repo) do
       {:ok, conn} ->
         conn
-        |> put_flash(:info, "Welcome back!")
-        |> redirect(to: page_path(conn, :index))
+        |> put_flash(:info, gettext("Welcome back!"))
+        |> redirect(to: page_path(conn, :index, conn.assigns.locale))
       {:error, _reason, conn} ->
         conn
-        |> put_flash(:error, "Invalid email/password combination")
+        |> put_flash(:error, gettext("Invalid email/password combination"))
         |> render("new.html")
     end
   end
@@ -21,6 +21,6 @@ defmodule CableCarSpotter.SessionController do
   def delete(conn, _) do
     conn
     |> CableCarSpotter.Auth.logout()
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: page_path(conn, :index, conn.assigns.locale))
   end
 end

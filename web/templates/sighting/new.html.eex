@@ -1,7 +1,9 @@
-<h2>New sighting</h2>
+<h2>
+  <%= gettext "I saw a cable car!" %>
+</h2>
 
 <%= render "form.html", changeset: @changeset,
                         cable_cars: @cable_cars,
-                        action: sighting_path(@conn, :create) %>
+                        action: sighting_path(@conn, :create, @locale) %>
 
-<%= link "Back", to: sighting_path(@conn, :index) %>
+<%= link gettext("Nevermind"), to: sighting_path(@conn, :index, @locale) %>

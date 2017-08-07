@@ -25,7 +25,7 @@ defmodule CableCarSpotter.CableCarController do
     case Repo.insert(changeset) do
       {:ok, _cable_car} ->
         conn
-        |> put_flash(:info, "Cable car created successfully.")
+        |> put_flash(:info, gettext("Cable car created successfully."))
         |> redirect(to: cable_car_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -51,7 +51,7 @@ defmodule CableCarSpotter.CableCarController do
     case Repo.update(changeset) do
       {:ok, cable_car} ->
         conn
-        |> put_flash(:info, "Cable car updated successfully.")
+        |> put_flash(:info, gettext("Cable car updated successfully."))
         |> redirect(to: cable_car_path(conn, :show, cable_car))
       {:error, changeset} ->
         render(conn, "edit.html", cable_car: cable_car, changeset: changeset)
@@ -66,7 +66,7 @@ defmodule CableCarSpotter.CableCarController do
     Repo.delete!(cable_car)
 
     conn
-    |> put_flash(:info, "Cable car deleted successfully.")
+    |> put_flash(:info, gettext("Cable car deleted successfully."))
     |> redirect(to: cable_car_path(conn, :index))
   end
 

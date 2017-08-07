@@ -2,6 +2,7 @@ defmodule CableCarSpotter.Auth do
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   import Phoenix.Controller
+  import CableCarSpotter.Gettext
   alias CableCarSpotter.Router.Helpers
 
   def init(opts) do
@@ -52,8 +53,8 @@ defmodule CableCarSpotter.Auth do
       conn
     else
       conn
-      |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: Helpers.session_path(conn, :new))
+      |> put_flash(:error, gettext("You must be logged in to access that page"))
+      |> redirect(to: Helpers.session_path(conn, :new, conn.assigns.locale))
       |> halt()
     end
   end
@@ -63,8 +64,8 @@ defmodule CableCarSpotter.Auth do
       conn
     else
       conn
-      |> put_flash(:error, "You are not allowed to access that page")
-      |> redirect(to: Helpers.page_path(conn, :index))
+      |> put_flash(:error, gettext("You are not allowed to access that page"))
+      |> redirect(to: Helpers.page_path(conn, :index, conn.assigns.locale))
       |> halt()
     end
   end

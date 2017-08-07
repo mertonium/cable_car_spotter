@@ -8,6 +8,7 @@ defmodule CableCarSpotter.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug CableCarSpotter.Auth, repo: CableCarSpotter.Repo
+    plug CableCarSpotter.Plug.Locale, "en"
   end
 
   pipeline :api do
@@ -15,6 +16,11 @@ defmodule CableCarSpotter.Router do
   end
 
   scope "/", CableCarSpotter do
+    pipe_through :browser
+    get "/", PageController, :dummy
+  end
+
+  scope "/:locale", CableCarSpotter do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index

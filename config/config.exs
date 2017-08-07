@@ -17,6 +17,9 @@ config :cable_car_spotter, CableCarSpotter.Endpoint,
   pubsub: [name: CableCarSpotter.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :cable_car_spotter, CableCarSpotter.Gettext,
+  locales: ~w(en es)
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

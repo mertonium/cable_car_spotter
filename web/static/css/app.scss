@@ -90,6 +90,16 @@ header {
 
   .navbar-nav > li > a {
     color: $color2;
+    &:active, &:hover {
+      color: $color4;
+    }
+  }
+
+  .navbar-nav > li > .faux-link {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color: $color2;
   }
 }
 

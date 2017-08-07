@@ -1,14 +1,14 @@
-<h2>Show user</h2>
+<h2><%= gettext("Show user") %></h2>
 
 <ul>
 
   <li>
-    <strong>Email:</strong>
+    <strong><%= gettext("Email:") %></strong>
     <%= @user.email %>
   </li>
 
   <li>
-    <strong>Account created:</strong>
+    <strong><%= gettext("Account created:") %></strong>
     <%= @user.inserted_at %>
   </li>
 

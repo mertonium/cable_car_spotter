@@ -1,9 +1,9 @@
-<h2>Listing users</h2>
+<h2><%= gettext "All users" %></h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Email</th>
+      <th><%= gettext "Email" %></th>
     </tr>
   </thead>
   <tbody>
@@ -17,4 +17,4 @@
   </tbody>
 </table>
 
-<%= link "New user", to: user_path(@conn, :new) %>
+<%= link gettext("New user"), to: user_path(@conn, :new) %>

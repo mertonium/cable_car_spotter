@@ -1,24 +1,23 @@
-<h2>Listing cable cars</h2>
+<h2><%= gettext "All Cable Cars" %></h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Car number</th>
-      <th>Line</th>
-      <th>Description</th>
-
+      <th><%= gettext "Car number" %></th>
+      <th><%= gettext "Line" %></th>
+      <th><%= gettext "History" %></th>
     </tr>
   </thead>
   <tbody>
-<%= for cable_car <- @cable_cars do %>
-    <tr>
-      <td>
-        <%= link cable_car.car_number, to: cable_car_path(@conn, :show, cable_car), class: "btn btn-default btn-xs" %>
-      </td>
-      <td><%= cable_car.line.title %></td>
-      <td><%= cable_car.description %></td>
-    </tr>
-<% end %>
+    <%= for cable_car <- @cable_cars do %>
+      <tr>
+        <td>
+          <%= link cable_car.car_number, to: cable_car_path(@conn, :show, @locale, cable_car), class: "btn btn-default btn-xs" %>
+        </td>
+        <td><%= cable_car.line.title %></td>
+        <td><%= cable_car.description %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 

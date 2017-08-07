@@ -21,8 +21,8 @@ defmodule CableCarSpotter.UserController do
       {:ok, user} ->
         conn
         |> CableCarSpotter.Auth.login(user)
-        |> put_flash(:info, "User created successfully.")
-        |> redirect(to: sighting_path(conn, :index))
+        |> put_flash(:info, gettext("User created successfully."))
+        |> redirect(to: sighting_path(conn, :index, conn.assigns.locale))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -46,7 +46,7 @@ defmodule CableCarSpotter.UserController do
     case Repo.update(changeset) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "User updated successfully.")
+        |> put_flash(:info, gettext("User updated successfully."))
         |> redirect(to: user_path(conn, :show, user))
       {:error, changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
@@ -61,7 +61,7 @@ defmodule CableCarSpotter.UserController do
     Repo.delete!(user)
 
     conn
-    |> put_flash(:info, "User deleted successfully.")
+    |> put_flash(:info, gettext("User deleted successfully."))
     |> redirect(to: user_path(conn, :index))
   end
 end

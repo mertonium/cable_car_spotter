@@ -32,8 +32,8 @@ defmodule CableCarSpotter.SightingController do
     case Repo.insert(changeset) do
       {:ok, _sighting} ->
         conn
-        |> put_flash(:info, "Sighting created successfully.")
-        |> redirect(to: sighting_path(conn, :index))
+        |> put_flash(:info, gettext("Sighting created successfully."))
+        |> redirect(to: sighting_path(conn, :index, conn.assigns.locale))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -41,6 +41,7 @@ defmodule CableCarSpotter.SightingController do
 
   def show(conn, %{"id" => id}, user) do
     sighting = Repo.get!(user_sightings(user), id)
+               |> Repo.preload(:cable_car)
     render(conn, "show.html", sighting: sighting)
   end
 
@@ -57,7 +58,7 @@ defmodule CableCarSpotter.SightingController do
     case Repo.update(changeset) do
       {:ok, sighting} ->
         conn
-        |> put_flash(:info, "Sighting updated successfully.")
+        |> put_flash(:info, gettext("Sighting updated successfully."))
         |> redirect(to: sighting_path(conn, :show, sighting))
       {:error, changeset} ->
         render(conn, "edit.html", sighting: sighting, changeset: changeset)
@@ -72,8 +73,8 @@ defmodule CableCarSpotter.SightingController do
     Repo.delete!(sighting)
 
     conn
-    |> put_flash(:info, "Sighting deleted successfully.")
-    |> redirect(to: sighting_path(conn, :index))
+    |> put_flash(:info, gettext("Sighting deleted successfully."))
+    |> redirect(to: sighting_path(conn, :index, conn.assigns.locale))
   end
 
   def action(conn, _) do

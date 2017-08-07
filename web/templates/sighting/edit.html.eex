@@ -1,7 +1,9 @@
-<h2>Edit sighting</h2>
+<h2>
+  <%= gettext("Edit sighting") %>
+</h2>
 
 <%= render "form.html", changeset: @changeset,
                         cable_cars: @cable_cars,
-                        action: sighting_path(@conn, :update, @sighting) %>
+                        action: sighting_path(@conn, :update, @locale, @sighting) %>
 
-<%= link "Back", to: sighting_path(@conn, :index) %>
+<%= link gettext("Cancel"), to: sighting_path(@conn, :index, @locale) %>

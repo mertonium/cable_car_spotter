@@ -1,23 +1,19 @@
-<h2>Show sighting</h2>
+<h2>
+  <%= @sighting.cable_car.car_number %>
+</h2>
 
-<ul>
+<img class="media-object img-responsive" style="min-width: 150px" src="<%= CableCarSpotter.Photo.url({@sighting.photo, @sighting}, :original) %>" alt="">
 
-  <li>
-    <strong>User:</strong>
-    <%= @sighting.user_id %>
-  </li>
+<p>
+  <em>
+    <%= gettext "spotted on %{sighting_date}", sighting_date: @sighting.inserted_at %>
+  </em>
+</p>
 
-  <li>
-    <strong>Cable car:</strong>
-    <%= @sighting.cable_car_id %>
-  </li>
+<p>
+  <%= @sighting.comment %>
+</p>
 
-  <li>
-    <strong>Comment:</strong>
-    <%= @sighting.comment %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: sighting_path(@conn, :edit, @sighting) %>
-<%= link "Back", to: sighting_path(@conn, :index) %>
+<%= link gettext("Edit"), to: sighting_path(@conn, :edit, @locale, @sighting) %>
+<br>
+<%= link gettext("Back to all your sightings"), to: sighting_path(@conn, :index, @locale) %>
