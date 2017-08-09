@@ -24,6 +24,9 @@ defmodule CableCarSpotter.SightingController do
   end
 
   def create(conn, %{"sighting" => sighting_params}, user) do
+    photo_metadata = extract_metadata_from_photo(sighting_params["photo"])
+    IO.inspect photo_metadata
+
     changeset =
       user
       |> build_assoc(:sightings)
@@ -93,5 +96,29 @@ defmodule CableCarSpotter.SightingController do
 
   defp user_sightings(user) do
     assoc(user, :sightings)
+  end
+
+  defp extract_metadata_from_photo(upload_plug) do
+    {:ok, info} = Exexif.exif_from_jpeg_file(upload_plug.path)
+    IO.inspect info
+
+    {:ok, datetime_taken} = Timex.parse(info.exif.datetime_original, "%Y:%m:%d %H:%M:%S", :strftime)
+
+    %{
+      latitude: from_dms_to_decimal(info.gps.gps_latitude, info.gps.gps_latitude_ref),
+      longitude: from_dms_to_decimal(info.gps.gps_longitude, info.gps.gps_longitude_ref),
+      date_taken: datetime_taken
+    }
+  end
+
+  defp from_dms_to_decimal(dms, ref) do
+    [d, m, s] = dms
+    decimal_version = d + m/60.0 + s/3600.0
+
+    case String.upcase(ref) do
+      "W" -> decimal_version * -1
+      "S" -> decimal_version * -1
+      _   -> decimal_version
+    end
   end
 end

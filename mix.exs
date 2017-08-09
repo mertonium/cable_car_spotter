@@ -19,7 +19,8 @@ defmodule CableCarSpotter.Mixfile do
   def application do
     [mod: {CableCarSpotter, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :ex_aws, :hackney, :poison]]
+                    :phoenix_ecto, :postgrex, :comeonin, :ex_aws, :hackney, :poison,
+                    :timex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -45,7 +46,9 @@ defmodule CableCarSpotter.Mixfile do
      {:ex_aws, "~> 1.1"},
      {:poison, "~> 2.0"},
      {:hackney, "~> 1.6"},
-     {:sweet_xml, "~> 0.6"}]
+     {:sweet_xml, "~> 0.6"},
+     {:exexif, "~> 0.0.3"},
+     {:timex, "~> 3.1"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
