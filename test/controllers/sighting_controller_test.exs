@@ -17,13 +17,13 @@ defmodule CableCarSpotter.SightingControllerTest do
 
   test "requires user authentication on all actions", %{conn: conn} do
     Enum.each([
-      get(conn, sighting_path(conn, :new)),
-      get(conn, sighting_path(conn, :index)),
-      get(conn, sighting_path(conn, :show, "123")),
-      get(conn, sighting_path(conn, :edit, "123")),
-      put(conn, sighting_path(conn, :update, "123", %{})),
-      post(conn, sighting_path(conn, :create, %{})),
-      delete(conn, sighting_path(conn, :delete, "123"))
+      get(conn, sighting_path(conn, :new, "en")),
+      get(conn, sighting_path(conn, :index, "en")),
+      get(conn, sighting_path(conn, :show, "en", "123")),
+      get(conn, sighting_path(conn, :edit, "en", "123")),
+      put(conn, sighting_path(conn, :update, "en", "123", %{})),
+      post(conn, sighting_path(conn, :create, "en", %{})),
+      delete(conn, sighting_path(conn, :delete, "en", "123"))
     ], fn conn ->
       assert html_response(conn, 302)
       assert conn.halted
@@ -42,27 +42,29 @@ defmodule CableCarSpotter.SightingControllerTest do
     })
 
 
-    conn = get conn, sighting_path(conn, :index)
+    conn = get conn, sighting_path(conn, :index, "en")
     assert html_response(conn, 200) =~ "Your Sightings"
     assert String.contains?(conn.resp_body, user_sighting.comment)
     refute String.contains?(conn.resp_body, other_sighting.comment)
   end
 
+  # CREATE
   @tag login_as: "j@tubbs.io"
   test "creates a sighting and redirects", %{conn: conn, user: user, cable_car: cable_car} do
-    conn = post conn, sighting_path(conn, :create), sighting: %{ cable_car_id: cable_car.id }
-    assert redirected_to(conn) == sighting_path(conn, :index)
+    conn = post conn, sighting_path(conn, :create, "en"), sighting: %{ cable_car_id: cable_car.id }
+    assert redirected_to(conn) == sighting_path(conn, :index, "en")
     assert Repo.get_by!(Sighting, %{cable_car_id: cable_car.id}).user_id == user.id
   end
 
   @tag login_as: "j@tubbs.io"
   test "does not create sighting and renders error when invalid", %{conn: conn} do
     count_before = sighting_count(Sighting)
-    conn = post conn, sighting_path(conn, :create), sighting: %{}
+    conn = post conn, sighting_path(conn, :create, "en"), sighting: %{}
     assert html_response(conn, 200) =~ "check the errors"
     assert sighting_count(Sighting) == count_before
   end
 
+  # SHOW
   @tag login_as: "j@tubbs.io"
   test "shows only a user's given sighting", %{conn: conn, user: user, cable_car: cable_car} do
     sighting1 = insert_sighting(%{
@@ -72,8 +74,7 @@ defmodule CableCarSpotter.SightingControllerTest do
       user_id: user.id, cable_car_id: cable_car.id, comment: "Ooops. That is the devil!"
     })
 
-
-    conn = get conn, sighting_path(conn, :show, sighting1.id)
+    conn = get conn, sighting_path(conn, :show, "en", sighting1.id)
     assert html_response(conn, 200) =~ sighting1.comment
     refute String.contains?(conn.resp_body, sighting2.comment)
   end
@@ -86,17 +87,16 @@ defmodule CableCarSpotter.SightingControllerTest do
     conn = assign(conn, :current_user, non_owner)
 
     assert_error_sent :not_found, fn ->
-      get(conn, sighting_path(conn, :show, sighting))
+      get(conn, sighting_path(conn, :show, "en", sighting))
     end
     assert_error_sent :not_found, fn ->
-      get(conn, sighting_path(conn, :edit, sighting))
+      get(conn, sighting_path(conn, :edit, "en", sighting))
     end
     assert_error_sent :not_found, fn ->
-      put(conn, sighting_path(conn, :update, sighting, sighting: %{comment: "yo"}))
+      put(conn, sighting_path(conn, :update, "en", sighting, sighting: %{comment: "yo"}))
     end
     assert_error_sent :not_found, fn ->
-      delete(conn, sighting_path(conn, :delete, sighting))
+      delete(conn, sighting_path(conn, :delete, "en", sighting))
     end
   end
-
 end
