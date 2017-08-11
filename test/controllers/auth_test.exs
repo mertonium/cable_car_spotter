@@ -6,7 +6,7 @@ defmodule CableCarSpotter.AuthTest do
     conn =
       conn
       |> bypass_through(CableCarSpotter.Router, :browser)
-      |> get("/")
+      |> get("/en", %{ "locale" => "en" })
 
     {:ok, %{conn: conn}}
   end
