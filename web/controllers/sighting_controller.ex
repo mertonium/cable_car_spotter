@@ -27,7 +27,7 @@ defmodule CableCarSpotter.SightingController do
     base_struct = user |> build_assoc(:sightings)
 
     changeset = case Map.has_key?(sighting_params, "photo") do
-      true -> Sighting.changeset_with_photo(base_struct, sighting_params, extract_metadata_from_photo(sighting_params["photo"]))
+      true -> Sighting.changeset_with_photo(base_struct, sighting_params, CableCarSpotter.ExifExtractor.extract_metadata_from_photo(sighting_params["photo"].path))
       false -> Sighting.changeset(base_struct, sighting_params)
     end
 
@@ -97,32 +97,4 @@ defmodule CableCarSpotter.SightingController do
     assoc(user, :sightings)
   end
 
-  defp extract_metadata_from_photo(upload_plug) do
-    {:ok, info} = Exexif.exif_from_jpeg_file(upload_plug.path)
-    #IO.inspect info
-
-    {:ok, datetime_taken} = Timex.parse(info.exif.datetime_original, "%Y:%m:%d %H:%M:%S", :strftime)
-
-    %{
-      geom: %Geo.Point{
-        coordinates: {
-          from_dms_to_decimal(info.gps.gps_latitude, info.gps.gps_latitude_ref),
-          from_dms_to_decimal(info.gps.gps_longitude, info.gps.gps_longitude_ref)
-        },
-        srid: 4326
-      },
-      photo_taken_at: datetime_taken
-    }
-  end
-
-  defp from_dms_to_decimal(dms, ref) do
-    [d, m, s] = dms
-    decimal_version = d + m/60.0 + s/3600.0
-
-    case String.upcase(ref) do
-      "W" -> decimal_version * -1
-      "S" -> decimal_version * -1
-      _   -> decimal_version
-    end
-  end
 end
