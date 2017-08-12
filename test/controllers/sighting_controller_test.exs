@@ -64,6 +64,23 @@ defmodule CableCarSpotter.SightingControllerTest do
     assert sighting_count(Sighting) == count_before
   end
 
+  @tag login_as: "j@tubbs.io"
+  test "when a photo is provided and it has exif data, the date and gps info is extracted", %{conn: conn, user: user, cable_car: cable_car} do
+    known_photo = %Plug.Upload{
+      path: "test/fixtures/cable_car_with_exif.jpg",
+      filename: "cable_car_with_exif.jpg"
+    }
+    known_timestamp = Timex.to_datetime({{2011, 4, 18}, {2, 11, 29}})
+    known_gps = {37.79555555555555, -122.41000000000001}
+
+    post conn, sighting_path(conn, :create, "en"), sighting: %{ cable_car_id: cable_car.id, photo: known_photo}
+    inserted_sighting = Repo.get_by!(Sighting, %{cable_car_id: cable_car.id, user_id: user.id})
+
+    assert Timex.compare(inserted_sighting.photo_taken_at, known_timestamp, :seconds) == 0
+    assert is_geo_point(inserted_sighting.geom)
+    assert inserted_sighting.geom.coordinates == known_gps
+  end
+
   # SHOW
   @tag login_as: "j@tubbs.io"
   test "shows only a user's given sighting", %{conn: conn, user: user, cable_car: cable_car} do
@@ -99,4 +116,8 @@ defmodule CableCarSpotter.SightingControllerTest do
       delete(conn, sighting_path(conn, :delete, "en", sighting))
     end
   end
+
+
+  defp is_geo_point(%Geo.Point{}), do: true
+  defp is_geo_point(_), do: false
 end

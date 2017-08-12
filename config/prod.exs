@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :cable_car_spotter, CableCarSpotter.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "gentle-headland-25551.herokuapp.com", port: 443],
+  url: [scheme: "https", host: "cablecarspotter.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_BASE_KEY")
@@ -26,6 +26,17 @@ config :cable_car_spotter, CableCarSpotter.Repo,
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :ex_aws,
+  access_key_id: System.get_env("CCS_AWS_ACCESS_KEY_ID"),
+  secret_access_key: System.get_env("CCS_AWS_SECRET_ACCESS_KEY"),
+  region: "us-west-2",
+  host: "s3-us-west-2.amazonaws.com",
+  s3: [
+    scheme: "https://",
+    host: "s3-us-west-2.amazonaws.com",
+    region: "us-west-2"
+  ]
 
 # ## SSL Support
 #

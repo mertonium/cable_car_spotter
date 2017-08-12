@@ -7,6 +7,8 @@ defmodule CableCarSpotter.Sighting do
     field :photo, CableCarSpotter.Photo.Type
     belongs_to :user, CableCarSpotter.User
     belongs_to :cable_car, CableCarSpotter.CableCar
+    field :photo_taken_at, :utc_datetime
+    field :geom, Geo.Point
 
     timestamps()
   end
@@ -19,5 +21,11 @@ defmodule CableCarSpotter.Sighting do
     |> cast(params, [:comment, :user_id, :cable_car_id])
     |> cast_attachments(params, [:photo])
     |> validate_required([:user_id, :cable_car_id])
+  end
+
+  def changeset_with_photo(struct, params, metadata) do
+    struct
+    |> changeset(params)
+    |> cast(metadata, [:photo_taken_at, :geom])
   end
 end

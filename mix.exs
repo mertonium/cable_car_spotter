@@ -48,7 +48,8 @@ defmodule CableCarSpotter.Mixfile do
      {:hackney, "~> 1.6"},
      {:sweet_xml, "~> 0.6"},
      {:exexif, "~> 0.0.3"},
-     {:timex, "~> 3.1"}]
+     {:timex, "~> 3.1"},
+     {:geo_postgis, git: "git@github.com:mertonium/geo_postgis.git"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

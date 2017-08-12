@@ -36,8 +36,22 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :cable_car_spotter, CableCarSpotter.Repo,
   adapter: Ecto.Adapters.Postgres,
+  types: CableCarSpotter.PostgresTypes,
   username: "cablecarspotter",
   password: "c4bl3c4r",
   database: "cable_car_spotter_dev",
   hostname: "localhost",
   pool_size: 5
+
+config :ex_aws,
+  access_key_id: System.get_env("CCS_AWS_ACCESS_KEY_ID"),
+  secret_access_key: System.get_env("CCS_AWS_SECRET_ACCESS_KEY"),
+  region: "us-west-2",
+  host: "s3-us-west-2.amazonaws.com",
+  s3: [
+    scheme: "https://",
+    host: "s3-us-west-2.amazonaws.com",
+    region: "us-west-2"
+  ]
+
+

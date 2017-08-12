@@ -24,13 +24,12 @@ defmodule CableCarSpotter.SightingController do
   end
 
   def create(conn, %{"sighting" => sighting_params}, user) do
-    photo_metadata = extract_metadata_from_photo(sighting_params["photo"])
-    IO.inspect photo_metadata
+    base_struct = user |> build_assoc(:sightings)
 
-    changeset =
-      user
-      |> build_assoc(:sightings)
-      |> Sighting.changeset(sighting_params)
+    changeset = case Map.has_key?(sighting_params, "photo") do
+      true -> Sighting.changeset_with_photo(base_struct, sighting_params, extract_metadata_from_photo(sighting_params["photo"]))
+      false -> Sighting.changeset(base_struct, sighting_params)
+    end
 
     case Repo.insert(changeset) do
       {:ok, _sighting} ->
@@ -100,14 +99,19 @@ defmodule CableCarSpotter.SightingController do
 
   defp extract_metadata_from_photo(upload_plug) do
     {:ok, info} = Exexif.exif_from_jpeg_file(upload_plug.path)
-    IO.inspect info
+    #IO.inspect info
 
     {:ok, datetime_taken} = Timex.parse(info.exif.datetime_original, "%Y:%m:%d %H:%M:%S", :strftime)
 
     %{
-      latitude: from_dms_to_decimal(info.gps.gps_latitude, info.gps.gps_latitude_ref),
-      longitude: from_dms_to_decimal(info.gps.gps_longitude, info.gps.gps_longitude_ref),
-      date_taken: datetime_taken
+      geom: %Geo.Point{
+        coordinates: {
+          from_dms_to_decimal(info.gps.gps_latitude, info.gps.gps_latitude_ref),
+          from_dms_to_decimal(info.gps.gps_longitude, info.gps.gps_longitude_ref)
+        },
+        srid: 4326
+      },
+      photo_taken_at: datetime_taken
     }
   end
 
