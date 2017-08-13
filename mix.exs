@@ -31,7 +31,7 @@ defmodule CableCarSpotter.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.4"},
+    [{:phoenix, "~> 1.3.0"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
@@ -44,12 +44,12 @@ defmodule CableCarSpotter.Mixfile do
      {:arc, "~> 0.8.0"},
      {:arc_ecto, "~> 0.7.0"},
      {:ex_aws, "~> 1.1"},
-     {:poison, "~> 2.0"},
+     {:poison, "~> 3.0"},
      {:hackney, "~> 1.6"},
      {:sweet_xml, "~> 0.6"},
      {:exexif, "~> 0.0.3"},
      {:timex, "~> 3.1"},
-     {:geo_postgis, git: "git@github.com:mertonium/geo_postgis.git"}]
+     {:geo_postgis, "~> 1.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
