@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.UserSocket do
+defmodule CableCarSpotterWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels

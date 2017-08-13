@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.ChannelCase do
+defmodule CableCarSpotterWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule CableCarSpotter.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint CableCarSpotter.Endpoint
+      @endpoint CableCarSpotterWeb.Endpoint
     end
   end
 

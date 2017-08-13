@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.PageController do
+defmodule CableCarSpotterWeb.PageController do
   use CableCarSpotter.Web, :controller
 
   def index(conn, _params) do

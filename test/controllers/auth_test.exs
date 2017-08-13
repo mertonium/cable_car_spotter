@@ -1,11 +1,11 @@
 defmodule CableCarSpotter.AuthTest do
-  use CableCarSpotter.ConnCase
-  alias CableCarSpotter.Auth
+  use CableCarSpotterWeb.ConnCase
+  alias CableCarSpotterWeb.Auth
 
   setup %{conn: conn} do
     conn =
       conn
-      |> bypass_through(CableCarSpotter.Router, :browser)
+      |> bypass_through(CableCarSpotterWeb.Router, :browser)
       |> get("/en", %{ "locale" => "en" })
 
     {:ok, %{conn: conn}}

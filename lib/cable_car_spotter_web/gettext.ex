@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.Gettext do
+defmodule CableCarSpotterWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
@@ -23,7 +23,7 @@ defmodule CableCarSpotter.Gettext do
   use Gettext, otp_app: :cable_car_spotter
 
   def supported_locales do
-    known = Gettext.known_locales(CableCarSpotter.Gettext)
+    known = Gettext.known_locales(CableCarSpotterWeb.Gettext)
     allowed = Application.get_env(:cable_car_spotter, __MODULE__)[:locales]
 
     Set.intersection(Enum.into(known, MapSet.new), Enum.into(allowed, MapSet.new))

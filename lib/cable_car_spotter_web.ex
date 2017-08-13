@@ -28,21 +28,22 @@ defmodule CableCarSpotter.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: CableCarSpotterWeb
 
       alias CableCarSpotter.Repo
       import Ecto
       import Ecto.Query
 
-      import CableCarSpotter.Router.Helpers
-      import CableCarSpotter.Gettext
-      import CableCarSpotter.Auth, only: [authenticate_user: 2]
+      import CableCarSpotterWeb.Router.Helpers
+      import CableCarSpotterWeb.Gettext
+      import CableCarSpotterWeb.Auth, only: [authenticate_user: 2]
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/cable_car_spotter_web/templates",
+                        namespace: CableCarSpotterWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -50,16 +51,16 @@ defmodule CableCarSpotter.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import CableCarSpotter.Router.Helpers
-      import CableCarSpotter.ErrorHelpers
-      import CableCarSpotter.Gettext
+      import CableCarSpotterWeb.Router.Helpers
+      import CableCarSpotterWeb.ErrorHelpers
+      import CableCarSpotterWeb.Gettext
     end
   end
 
   def router do
     quote do
       use Phoenix.Router
-      import CableCarSpotter.Auth, only: [authenticate_user: 2, authenticate_admin: 2]
+      import CableCarSpotterWeb.Auth, only: [authenticate_user: 2, authenticate_admin: 2]
     end
   end
 
@@ -70,7 +71,7 @@ defmodule CableCarSpotter.Web do
       alias CableCarSpotter.Repo
       import Ecto
       import Ecto.Query
-      import CableCarSpotter.Gettext
+      import CableCarSpotterWeb.Gettext
     end
   end
 

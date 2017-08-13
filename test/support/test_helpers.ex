@@ -38,5 +38,4 @@ defmodule CableCarSpotter.TestHelpers do
     |> CableCarSpotter.Sighting.changeset(attrs)
     |> Repo.insert!
   end
-
 end

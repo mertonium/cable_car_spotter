@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.Router do
+defmodule CableCarSpotterWeb.Router do
   use CableCarSpotter.Web, :router
 
   pipeline :browser do
@@ -7,7 +7,7 @@ defmodule CableCarSpotter.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug CableCarSpotter.Auth, repo: CableCarSpotter.Repo
+    plug CableCarSpotterWeb.Auth, repo: CableCarSpotter.Repo
     plug CableCarSpotter.Plug.Locale, "en"
   end
 
@@ -15,12 +15,12 @@ defmodule CableCarSpotter.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", CableCarSpotter do
+  scope "/", CableCarSpotterWeb do
     pipe_through :browser
-    get "/", PageController, :dummy
+    get "/", PageControllerWeb, :dummy
   end
 
-  scope "/:locale", CableCarSpotter do
+  scope "/:locale", CableCarSpotterWeb do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
@@ -30,7 +30,7 @@ defmodule CableCarSpotter.Router do
     resources "/s", SightingController
   end
 
-  scope "/admin", CableCarSpotter do
+  scope "/admin", CableCarSpotterWeb do
     pipe_through [:browser, :authenticate_admin]
     resources "/cable_cars", CableCarController
     resources "/users", UserController

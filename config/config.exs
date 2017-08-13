@@ -10,14 +10,14 @@ config :cable_car_spotter,
   ecto_repos: [CableCarSpotter.Repo]
 
 # Configures the endpoint
-config :cable_car_spotter, CableCarSpotter.Endpoint,
+config :cable_car_spotter, CableCarSpotterWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "4jc+/zjnHJqjcd5xGhQArlSBm4Z5U50d2HMZaBgxt731d05Tc+bMDGO8yUEvDSmc",
-  render_errors: [view: CableCarSpotter.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: CableCarSpotterWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: CableCarSpotter.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
-config :cable_car_spotter, CableCarSpotter.Gettext,
+config :cable_car_spotter, CableCarSpotterWeb.Gettext,
   locales: ~w(en es)
 
 # Configures Elixir's Logger

@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.CableCarController do
+defmodule CableCarSpotterWeb.CableCarController do
   use CableCarSpotter.Web, :controller
 
   alias CableCarSpotter.CableCar

@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.ConnCase do
+defmodule CableCarSpotterWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,11 +25,11 @@ defmodule CableCarSpotter.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import CableCarSpotter.Router.Helpers
+      import CableCarSpotterWeb.Router.Helpers
       import CableCarSpotter.TestHelpers
 
       # The default endpoint for testing
-      @endpoint CableCarSpotter.Endpoint
+      @endpoint CableCarSpotterWeb.Endpoint
     end
   end
 

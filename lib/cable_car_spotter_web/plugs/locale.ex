@@ -36,7 +36,7 @@ defmodule CableCarSpotter.Plug.Locale do
   end
 
   defp assign_locale!(conn, value) do
-    Gettext.put_locale(CableCarSpotter.Gettext, value)
+    Gettext.put_locale(CableCarSpotterWeb.Gettext, value)
     conn |> assign(:locale, value)
   end
 
@@ -95,6 +95,6 @@ defmodule CableCarSpotter.Plug.Locale do
   end
 
   defp supported_locale?(l) do
-    l in CableCarSpotter.Gettext.supported_locales
+    l in CableCarSpotterWeb.Gettext.supported_locales
   end
 end

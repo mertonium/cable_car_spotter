@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.UserController do
+defmodule CableCarSpotterWeb.UserController do
   use CableCarSpotter.Web, :controller
   plug :authenticate_user when action in [:index, :show]
 
@@ -20,7 +20,7 @@ defmodule CableCarSpotter.UserController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
-        |> CableCarSpotter.Auth.login(user)
+        |> CableCarSpotterWeb.Auth.login(user)
         |> put_flash(:info, gettext("User created successfully."))
         |> redirect(to: sighting_path(conn, :index, conn.assigns.locale))
       {:error, changeset} ->

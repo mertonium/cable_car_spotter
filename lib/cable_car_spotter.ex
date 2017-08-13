@@ -11,7 +11,7 @@ defmodule CableCarSpotter do
       # Start the Ecto repository
       supervisor(CableCarSpotter.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(CableCarSpotter.Endpoint, []),
+      supervisor(CableCarSpotterWeb.Endpoint, []),
       # Start your own worker by calling: CableCarSpotter.Worker.start_link(arg1, arg2, arg3)
       # worker(CableCarSpotter.Worker, [arg1, arg2, arg3]),
     ]
@@ -25,7 +25,7 @@ defmodule CableCarSpotter do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    CableCarSpotter.Endpoint.config_change(changed, removed)
+    CableCarSpotterWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

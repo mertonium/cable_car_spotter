@@ -1,5 +1,5 @@
 defmodule CableCarSpotter.PageControllerTest do
-  use CableCarSpotter.ConnCase
+  use CableCarSpotterWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, page_path(conn, :index, "en")

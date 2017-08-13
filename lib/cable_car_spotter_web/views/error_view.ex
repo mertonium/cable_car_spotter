@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.ErrorView do
+defmodule CableCarSpotterWeb.ErrorView do
   use CableCarSpotter.Web, :view
 
   def render("404.html", _assigns) do

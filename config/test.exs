@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :cable_car_spotter, CableCarSpotter.Endpoint,
+config :cable_car_spotter, CableCarSpotterWeb.Endpoint,
   http: [port: 4001],
   server: false
 

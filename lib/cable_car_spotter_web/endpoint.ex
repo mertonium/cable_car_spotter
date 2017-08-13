@@ -1,7 +1,7 @@
-defmodule CableCarSpotter.Endpoint do
+defmodule CableCarSpotterWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :cable_car_spotter
 
-  socket "/socket", CableCarSpotter.UserSocket
+  socket "/socket", CableCarSpotterWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,5 +38,5 @@ defmodule CableCarSpotter.Endpoint do
     key: "_cable_car_spotter_key",
     signing_salt: "MxpRU4zC"
 
-  plug CableCarSpotter.Router
+  plug CableCarSpotterWeb.Router
 end

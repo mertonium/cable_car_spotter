@@ -1,9 +1,9 @@
-defmodule CableCarSpotter.Auth do
+defmodule CableCarSpotterWeb.Auth do
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   import Phoenix.Controller
-  import CableCarSpotter.Gettext
-  alias CableCarSpotter.Router.Helpers
+  import CableCarSpotterWeb.Gettext
+  alias CableCarSpotterWeb.Router.Helpers
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)

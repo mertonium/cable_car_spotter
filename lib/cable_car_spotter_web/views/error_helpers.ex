@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.ErrorHelpers do
+defmodule CableCarSpotterWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule CableCarSpotter.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(CableCarSpotter.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(CableCarSpotterWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(CableCarSpotter.Gettext, "errors", msg, opts)
+      Gettext.dgettext(CableCarSpotterWeb.Gettext, "errors", msg, opts)
     end
   end
 end

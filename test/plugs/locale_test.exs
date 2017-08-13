@@ -1,5 +1,5 @@
 defmodule CableCarSpotter.Plugs.LocaleTest do
-  use CableCarSpotter.ConnCase
+  use CableCarSpotterWeb.ConnCase
 
   test "no locale params is passed in, but browser accepts 'en', user is redirected to 'en' version of the path" do
     conn = build_conn(:get, "/u/new", %{})

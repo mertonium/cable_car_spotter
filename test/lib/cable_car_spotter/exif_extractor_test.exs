@@ -1,5 +1,5 @@
 defmodule CableCarSpotter.ExifExtractorTest do
-  use CableCarSpotter.ConnCase
+  use CableCarSpotterWeb.ConnCase
 
   describe "when the given photo has exif data" do
     test "the gps and timestamp are returned" do

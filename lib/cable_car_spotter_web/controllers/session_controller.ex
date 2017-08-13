@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.SessionController do
+defmodule CableCarSpotterWeb.SessionController do
   use CableCarSpotter.Web, :controller
 
   def new(conn, _) do
@@ -6,7 +6,7 @@ defmodule CableCarSpotter.SessionController do
   end
 
   def create(conn, %{"session" => %{"email" => email, "password" => pass}}) do
-    case CableCarSpotter.Auth.login_by_email_and_pass(conn, email, pass, repo: Repo) do
+    case CableCarSpotterWeb.Auth.login_by_email_and_pass(conn, email, pass, repo: Repo) do
       {:ok, conn} ->
         conn
         |> put_flash(:info, gettext("Welcome back!"))
@@ -20,7 +20,7 @@ defmodule CableCarSpotter.SessionController do
 
   def delete(conn, _) do
     conn
-    |> CableCarSpotter.Auth.logout()
+    |> CableCarSpotterWeb.Auth.logout()
     |> redirect(to: page_path(conn, :index, conn.assigns.locale))
   end
 end

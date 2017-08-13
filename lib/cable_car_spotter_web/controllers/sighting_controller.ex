@@ -1,4 +1,4 @@
-defmodule CableCarSpotter.SightingController do
+defmodule CableCarSpotterWeb.SightingController do
   use CableCarSpotter.Web, :controller
   alias CableCarSpotter.Sighting
   alias CableCarSpotter.CableCar
@@ -96,5 +96,4 @@ defmodule CableCarSpotter.SightingController do
   defp user_sightings(user) do
     assoc(user, :sightings)
   end
-
 end

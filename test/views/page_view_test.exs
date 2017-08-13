@@ -1,3 +1,3 @@
 defmodule CableCarSpotter.PageViewTest do
-  use CableCarSpotter.ConnCase, async: true
+  use CableCarSpotterWeb.ConnCase, async: true
 end

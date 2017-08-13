@@ -1,18 +1,18 @@
-defmodule CableCarSpotter.LayoutView do
+defmodule CableCarSpotterWeb.LayoutView do
   use CableCarSpotter.Web, :view
 
   @doc """
   Renders current locale.
   """
   def locale do
-    Gettext.get_locale(CableCarSpotter.Gettext)
+    Gettext.get_locale(CableCarSpotterWeb.Gettext)
   end
 
   @doc """
   Provides tuples for all alternative languages supported.
   """
   def fb_locales do
-    CableCarSpotter.Gettext.supported_locales
+    CableCarSpotterWeb.Gettext.supported_locales
     |> Enum.map(fn l ->
       current = locale()
       case l do
@@ -26,7 +26,7 @@ defmodule CableCarSpotter.LayoutView do
   Provides tuples for all alternative languages supported.
   """
   def language_annotations(conn) do
-    CableCarSpotter.Gettext.supported_locales
+    CableCarSpotterWeb.Gettext.supported_locales
     |> Enum.reject(fn l -> l == locale() end)
     |> Enum.concat(["x-default"])
     |> Enum.map(fn l ->
@@ -42,6 +42,6 @@ defmodule CableCarSpotter.LayoutView do
     path = ~r/\/#{locale()}(\/(?:[^?]+)?|$)/
     |> Regex.replace(conn.request_path, "#{alt}\\1")
 
-    Phoenix.Router.Helpers.url(CableCarSpotter.Router, conn) <> path
+    Phoenix.Router.Helpers.url(CableCarSpotterWeb.Router, conn) <> path
  end
 end

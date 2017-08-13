@@ -1,5 +1,5 @@
 defmodule CableCarSpotter.UserControllerTest do
-  use CableCarSpotter.ConnCase
+  use CableCarSpotterWeb.ConnCase
 
   alias CableCarSpotter.User
   @valid_attrs %{email: "j@tubbs.io", password: "supersecret"}

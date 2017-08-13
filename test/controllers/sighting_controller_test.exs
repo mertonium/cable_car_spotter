@@ -1,5 +1,5 @@
 defmodule CableCarSpotter.SightingControllerTest do
-  use CableCarSpotter.ConnCase
+  use CableCarSpotterWeb.ConnCase
   alias CableCarSpotter.Sighting
 
   defp sighting_count(query), do: Repo.one(from s in query, select: count(s.id))
@@ -116,7 +116,6 @@ defmodule CableCarSpotter.SightingControllerTest do
       delete(conn, sighting_path(conn, :delete, "en", sighting))
     end
   end
-
 
   defp is_geo_point(%Geo.Point{}), do: true
   defp is_geo_point(_), do: false

@@ -1,5 +1,5 @@
 defmodule CableCarSpotter.CableCarControllerTest do
-  use CableCarSpotter.ConnCase
+  use CableCarSpotterWeb.ConnCase
 
   test "lists all entries on index", %{conn: conn} do
     conn = get(conn, cable_car_path(conn, :index, "en"))
