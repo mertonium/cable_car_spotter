@@ -33,8 +33,7 @@ defmodule CableCarSpotter.ExifExtractor do
     end
   end
 
-  defp from_dms_to_decimal(dms, ref) do
-    [d, m, s] = dms
+  defp from_dms_to_decimal([d, m, s], ref) do
     decimal_version = d + m/60.0 + s/3600.0
 
     case String.upcase(ref) do
@@ -43,5 +42,4 @@ defmodule CableCarSpotter.ExifExtractor do
       _   -> decimal_version
     end
   end
-
 end
