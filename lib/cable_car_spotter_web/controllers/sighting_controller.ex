@@ -2,6 +2,7 @@ defmodule CableCarSpotterWeb.SightingController do
   use CableCarSpotter.Web, :controller
   alias CableCarSpotter.Sighting
   alias CableCarSpotter.CableCar
+  alias CableCarSpotter.ExifExtractor
 
   plug :load_cable_cars, except: [:index]
   plug :authenticate_user
@@ -27,7 +28,11 @@ defmodule CableCarSpotterWeb.SightingController do
     base_struct = user |> build_assoc(:sightings)
 
     changeset = case Map.has_key?(sighting_params, "photo") do
-      true -> Sighting.changeset_with_photo(base_struct, sighting_params, CableCarSpotter.ExifExtractor.extract_metadata_from_photo(sighting_params["photo"].path))
+      true -> Sighting.changeset_with_photo(
+        base_struct,
+        sighting_params,
+        ExifExtractor.extract_metadata_from_photo(sighting_params["photo"].path)
+      )
       false -> Sighting.changeset(base_struct, sighting_params)
     end
 
