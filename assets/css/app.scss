@@ -52,6 +52,21 @@ $brand-color: $color4;
   }
 }
 
+/*
+  Override the larger size screens. It's causing anxiety
+  to think about this app on a desktop
+*/
+@media (min-width: 1200px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 750px;
+  }
+}
+
 header {
   background-color: $color3;
 
