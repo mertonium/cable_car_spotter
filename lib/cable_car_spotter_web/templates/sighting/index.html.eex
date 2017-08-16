@@ -3,25 +3,24 @@
 </h2>
 
 <%= if Enum.count(@sightings) > 0 do %>
-  <ul class="media-list">
-    <%= for sighting <- @sightings do %>
-      <li class="media">
-        <div class="media-left">
-          <%= link to: sighting_path(@conn, :show, @locale, sighting) do  %>
-            <img class="media-object img-responsive" style="min-width: 150px" src="<%= CableCarSpotter.Photo.url({sighting.photo, sighting}, :original) %>" alt="">
-          <% end %>
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading">
-            <%= sighting.cable_car.car_number %>
-          </h4>
-          <em><%= sighting.inserted_at %></em>
-          <br>
-          <%= sighting.comment %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+  <%= for sighting <- @sightings do %>
+    <div class="row sighting-list-row">
+      <div class="col-xs-12 col-sm-5">
+        <%= link to: sighting_path(@conn, :show, @locale, sighting) do  %>
+          <img class="media-object img-responsive" style="min-width: 250px" src="<%= CableCarSpotter.Photo.url({sighting.photo, sighting}, :original) %>" alt="">
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-7">
+        <h4 class="media-heading">
+          <%= sighting.cable_car.car_number %>
+        </h4>
+        <em><%= sighting.inserted_at %></em>
+        <br>
+        <%= sighting.comment %>
+      </div>
+    </div>
+    <hr class="sighting-list-row-separator visible-xs-block" />
+  <% end %>
 <% else %>
   <p>
     <%= gettext "No sightings yet :(" %>
