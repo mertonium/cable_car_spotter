@@ -33,7 +33,7 @@ defmodule CableCarSpotter.Photo do
 
   # Provide a default URL if there hasn't been a file uploaded
   def default_url(_version, _scope) do
-    "https://via.placeholder.com/150x100"
+    CableCarSpotterWeb.Endpoint.url <> "/images/default_cable_car.png"
   end
 
   # Specify custom headers for s3 objects
