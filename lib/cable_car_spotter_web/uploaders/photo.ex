@@ -19,10 +19,10 @@ defmodule CableCarSpotter.Photo do
   end
 
   # Override the persisted filenames:
-  #def filename(version, {file, scope}) do
-  #  extension = file.file_name |> Path.extname() |> String.downcase()
-  #  "sightings/#{scope.user_id}/#{scope.id}/#{version}#{extension}"
-  #end
+  def filename(version, {file, scope}) do
+    uuid = UUID.uuid5(:url, file.file_name, :hex)
+    "sightings/#{scope.user_id}/#{scope.cable_car_id}/#{uuid}/#{version}"
+  end
 
   # Override the storage directory:
   # def storage_dir(version, {file, scope}) do

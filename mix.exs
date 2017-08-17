@@ -49,7 +49,8 @@ defmodule CableCarSpotter.Mixfile do
      {:sweet_xml, "~> 0.6"},
      {:exexif, "~> 0.0.3"},
      {:timex, "~> 3.1"},
-     {:geo_postgis, "~> 1.0"}]
+     {:geo_postgis, "~> 1.0"},
+     { :uuid, "~> 1.1" }]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
