@@ -13,7 +13,11 @@ defmodule CableCarSpotter.Photo do
     Enum.member?(@extension_whitelist, file_extension)
   end
 
-  # Define a thumbnail transformation:
+  # Define some transformations:
+  def transform(:original, _) do
+    {:convert, "-strip -resize 1024x768 -gravity center -limit area 10MB -limit disk 50MB"}
+  end
+
   def transform(:thumbnail, _) do
     {:convert, "-strip -thumbnail 320x430 -gravity center -limit area 10MB -limit disk 50MB"}
   end
