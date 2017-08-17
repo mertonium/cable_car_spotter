@@ -7,7 +7,7 @@
     <div class="row sighting-list-row">
       <div class="col-xs-12 col-sm-5">
         <%= link to: sighting_path(@conn, :show, @locale, sighting) do  %>
-          <img class="media-object img-responsive" style="min-width: 250px" src="<%= CableCarSpotter.Photo.url({sighting.photo, sighting}, :original) %>" alt="">
+          <img class="media-object img-responsive" style="min-width: 250px" src="<%= CableCarSpotter.Photo.url({sighting.photo, sighting}, :thumbnail) %>" alt="">
         <% end %>
       </div>
       <div class="col-xs-12 col-sm-7">

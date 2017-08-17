@@ -4,10 +4,7 @@ defmodule CableCarSpotter.Photo do
   # Include ecto support (requires package arc_ecto installed):
   use Arc.Ecto.Definition
 
-  @versions [:original]
-
-  # To add a thumbnail version:
-  # @versions [:original, :thumb]
+  @versions [:original, :thumbnail]
 
   @extension_whitelist ~w(.jpg .jpeg .gif .png)
 
@@ -17,14 +14,15 @@ defmodule CableCarSpotter.Photo do
   end
 
   # Define a thumbnail transformation:
-  # def transform(:thumb, _) do
-  #   {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
-  # end
+  def transform(:thumbnail, _) do
+    {:convert, "-strip -thumbnail 320x430 -gravity center -limit area 10MB -limit disk 50MB"}
+  end
 
   # Override the persisted filenames:
-  # def filename(version, _) do
-  #   version
-  # end
+  #def filename(version, {file, scope}) do
+  #  extension = file.file_name |> Path.extname() |> String.downcase()
+  #  "sightings/#{scope.user_id}/#{scope.id}/#{version}#{extension}"
+  #end
 
   # Override the storage directory:
   # def storage_dir(version, {file, scope}) do
