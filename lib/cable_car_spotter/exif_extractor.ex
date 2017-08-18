@@ -6,25 +6,32 @@ defmodule CableCarSpotter.ExifExtractor do
     end
   end
 
-  defp extract_from_valid_exif(exif_data) do
+  defp extract_from_valid_exif(%{ gps: gps, exif: exif}) do
     %{
-      geom: %Geo.Point{
-        coordinates: {
-          from_dms_to_decimal(exif_data.gps.gps_latitude, exif_data.gps.gps_latitude_ref),
-          from_dms_to_decimal(exif_data.gps.gps_longitude, exif_data.gps.gps_longitude_ref)
-        },
-        srid: 4326
-      },
-      photo_taken_at: datetime_original(exif_data.exif)
+      geom: extract_geo_point(gps),
+      photo_taken_at: datetime_original(exif)
     }
   end
 
-  defp datetime_original(exif) do
-    case Map.has_key?(exif, :datetime_original) do
-      true -> parse_datetime_original(exif.datetime_original)
-      _    -> nil
-    end
+  defp extract_from_valid_exif(%{ exif: exif}) do
+    %{
+      geom: nil,
+      photo_taken_at: datetime_original(exif)
+    }
   end
+
+  defp extract_geo_point(%{gps_latitude: lat, gps_latitude_ref: lat_ref, gps_longitude: lng, gps_longitude_ref: lng_ref}) do
+    %Geo.Point{
+      coordinates: {
+        from_dms_to_decimal(lat, lat_ref),
+        from_dms_to_decimal(lng, lng_ref)
+      },
+      srid: 4326
+    }
+  end
+
+  defp datetime_original(%{ datetime_original: given_dt}), do: parse_datetime_original(given_dt)
+  defp datetime_original(_), do: nil
 
   defp parse_datetime_original(datetime_original) do
     case Timex.parse(datetime_original, "%Y:%m:%d %H:%M:%S", :strftime) do
