@@ -15,7 +15,6 @@ defmodule CableCarSpotter.ExifExtractor do
 
   defp extract_from_valid_exif(%{ exif: exif}) do
     %{
-      geom: nil,
       photo_taken_at: datetime_original(exif)
     }
   end
