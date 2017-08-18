@@ -11,6 +11,13 @@ defmodule CableCarSpotter.ExifExtractorTest do
     end
   end
 
+  describe "when given photo has exif data, but no gps" do
+    test "the geom attribute is set to nil" do
+      image_path = "test/fixtures/exif_but_no_gps.jpg"
+      assert %{ geom: nil } = CableCarSpotter.ExifExtractor.extract_metadata_from_photo(image_path)
+    end
+  end
+
   describe "when the given photo has GPS but does not have datetime data" do
     test "the photo_taken_at field is left blank" do
       image_path = "test/fixtures/cable_car_without_datetime.jpg"
