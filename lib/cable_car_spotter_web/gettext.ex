@@ -23,10 +23,9 @@ defmodule CableCarSpotterWeb.Gettext do
   use Gettext, otp_app: :cable_car_spotter
 
   def supported_locales do
-    known = Gettext.known_locales(CableCarSpotterWeb.Gettext)
-    allowed = Application.get_env(:cable_car_spotter, __MODULE__)[:locales]
-
-    Set.intersection(Enum.into(known, MapSet.new), Enum.into(allowed, MapSet.new))
-    |> Set.to_list
+    Gettext.known_locales(CableCarSpotterWeb.Gettext)
+    |> MapSet.new
+    |> MapSet.intersection(MapSet.new(Application.get_env(:cable_car_spotter, __MODULE__)[:locales]))
+    |> MapSet.to_list
   end
 end
