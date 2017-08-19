@@ -1,8 +1,19 @@
 defmodule CableCarSpotter.Plug.Locale do
   import Plug.Conn
 
+  @moduledoc """
+  Handles the locale-based redirection.
+  """
+
   def init(default), do: default
 
+  @doc """
+  If the url of the given connection includes a supported locale, just make
+  sure the app locale is set and move on.
+
+  If the url of the given connection does not include a supported locale,
+  determine which locale should be used and redirect the user there.
+  """
   def call(conn, default) do
     if supported_locale_is_in_url?(conn) do
       conn |> assign_locale!(conn.params["locale"])

@@ -7,9 +7,9 @@ defmodule CableCarSpotterWeb.CableCarController do
   plug :load_lines when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
-    cable_cars =
-      Repo.all(CableCar)
-      |> Repo.preload(:line)
+    cable_cars = CableCar
+                 |> Repo.all
+                 |> Repo.preload(:line)
 
     render(conn, "index.html", cable_cars: cable_cars)
   end
@@ -33,8 +33,10 @@ defmodule CableCarSpotterWeb.CableCarController do
   end
 
   def show(conn, %{"id" => id}) do
-    cable_car = Repo.get!(CableCar, id)
-      |> Repo.preload(:line)
+    cable_car = CableCar
+                |> Repo.get!(id)
+                |> Repo.preload(:line)
+
     render(conn, "show.html", cable_car: cable_car)
   end
 

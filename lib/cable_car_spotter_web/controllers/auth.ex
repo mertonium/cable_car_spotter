@@ -5,6 +5,9 @@ defmodule CableCarSpotterWeb.Auth do
   import CableCarSpotterWeb.Gettext
   alias CableCarSpotterWeb.Router.Helpers
 
+  @moduledoc """
+  Handles authentication logic.
+  """
   def init(opts) do
     Keyword.fetch!(opts, :repo)
   end

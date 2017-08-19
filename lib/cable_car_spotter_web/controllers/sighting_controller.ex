@@ -8,9 +8,10 @@ defmodule CableCarSpotterWeb.SightingController do
   plug :authenticate_user
 
   def index(conn, _params, user) do
-    sightings =
-      Repo.all(user_sightings(user))
-      |> Repo.preload(:cable_car)
+    sightings = user
+                |> user_sightings
+                |> Repo.all
+                |> Repo.preload(:cable_car)
 
     render(conn, "index.html", sightings: sightings)
   end
@@ -47,8 +48,11 @@ defmodule CableCarSpotterWeb.SightingController do
   end
 
   def show(conn, %{"id" => id}, user) do
-    sighting = Repo.get!(user_sightings(user), id)
+    sighting = user
+               |> user_sightings
+               |> Repo.get!(id)
                |> Repo.preload(:cable_car)
+
     render(conn, "show.html", sighting: sighting)
   end
 

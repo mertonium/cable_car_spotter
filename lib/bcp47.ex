@@ -74,13 +74,13 @@ defmodule BCP47 do
     Blank.present?(tag) && String.downcase(tag) in ietf_codes()
   end
 
-  defp expression() do
+  defp expression do
     ~r/^(?:(?<gf_irregular>en-GB-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|i-klingon|i-lux|i-mingo|i-navajo|i-pwn|i-tao|i-tay|i-tsu|sgn-BE-FR|sgn-BE-NL|sgn-CH-DE)|(?<gf_regular>art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|zh-min|zh-min-nan|zh-xiang))$|^(?<language>(?:[a-z]{2,3}(?:(?:-[a-z]{3}){1,3})?)|[a-z]{4}|[a-z]{5,8})(?:-(?<script>[a-z]{4}))?(?:-(?<region>[a-z]{2}|\d{3}))?(?<variant>(?:-(?:[\da-z]{5,8}|\d[\da-z]{3}))*)?(?<extension>(?:-[\da-wy-z](?:-[\da-z]{2,8})+)*)?(?<lang_private>-x(?:-[\da-z]{1,8})+)?$|^(?<private>x(?:-[\da-z]{1,8})+)$/i
   end
 
   defp extract_language(string) do
     [language|extlang] = string |> String.split("-")
-    %{ language: language, extlang: extlang }
+    %{language: language, extlang: extlang}
   end
 
   defp extract_variants(string) do
@@ -94,7 +94,7 @@ defmodule BCP47 do
     |> List.flatten
     |> Enum.map(fn match ->
       [singleton|values] = String.split(match, "-")
-      %{ singleton: singleton, values: values }
+      %{singleton: singleton, values: values}
     end)
   end
 
