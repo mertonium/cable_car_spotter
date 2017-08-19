@@ -1,48 +1,6 @@
 /* This file is for your main application css. */
-
-/* Coolors Exported Palette - coolors.co/4b0e19-e8e9f3-e3571c-b5ac2f-cecece */
-
-/* HSL */
-/*
-$color1: hsla(349%, 69%, 17%, 1);
-$color2: hsla(235%, 31%, 93%, 1);
-$color3: hsla(18%, 78%, 50%, 1);
-$color4: hsla(56%, 59%, 45%, 1);
-$color5: hsla(0%, 0%, 81%, 1);
-*/
-
-/* RGB */
-/*
-$color1: rgba(75, 14, 25, 1);
-$color2: rgba(232, 233, 243, 1);
-$color3: rgba(227, 87, 28, 1);
-$color4: rgba(181, 172, 47, 1);
-$color5: rgba(206, 206, 206, 1);
-*/
-
-/* Coolors Exported Palette - coolors.co/b4d0d7-f9f8f8-3b1e1a-edcd2a-fefaf8 */
-
-/* HSL */
-$color1: hsla(192%, 30%, 77%, 1);
-$color2: hsla(0%, 8%, 97%, 1);
-$color3: hsla(7%, 39%, 17%, 1);
-$color4: hsla(50%, 84%, 55%, 1);
-$color5: hsla(20%, 75%, 98%, 1);
-
-/* RGB */
-/*
-$color1: rgba(180, 208, 215, 1);
-$color2: rgba(249, 248, 248, 1);
-$color3: rgba(59, 30, 26, 1);
-$color4: rgba(237, 205, 42, 1);
-$color5: rgba(254, 250, 248, 1);
-*/
-$color6: #99581D;
-
-$tinos: 'Tinos';
-
-$brand-font: $tinos;
-$brand-color: $color4;
+@import 'colors';
+@import 'navbar';
 
 /* Override default header margins for mobile */
 @media (max-width: 767px){
@@ -72,79 +30,6 @@ header {
 
   a {
     color: #ffffff;
-  }
-}
-
-.navbar-ccs {
-  background-color: $color3;
-
-  .navbar-brand {
-    font-family: $brand-font;
-    color: $brand-color;
-    text-transform: uppercase;
-    font-size: 1.5em;
-    &:hover {
-      color: $color5;
-    }
-  }
-
-  .navbar-toggle {
-    border: 0;
-    &:hover {
-      background-color: $color3;
-    }
-
-    .icon-bar {
-      background-color: $color5;
-    }
-  }
-
-  .navbar-collapse {
-    border-color: $color5;
-  }
-
-  .navbar-nav > li > a {
-    color: $color2;
-    &:active, &:hover {
-      color: $color4;
-    }
-  }
-
-  .navbar-nav > li .faux-link {
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-    color: $color2;
-  }
-}
-
-@media (min-width: 768px) {
-  .navbar-ccs {
-    .navbar-nav > li .faux-link,
-    .navbar-nav form.link {
-      padding-top: 15px;
-      padding-bottom: 15px;
-    }
-  }
-}
-
-.navbar-nav {
-  form.link {
-    line-height: 20px;
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-  }
-}
-
-.logo {
-  display: inline-block;
-  margin-bottom: 1em;
-  padding-left: 0.5em;
-
-  h1 {
-    color: #ffffff;
-    font-size: 3em;
   }
 }
 

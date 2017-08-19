@@ -1,0 +1,83 @@
+.navbar-ccs {
+  background-color: $color3;
+
+  .navbar-brand {
+    font-family: $brand-font;
+    color: $brand-color;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    &:hover {
+      color: darken($brand-color, 10%);
+    }
+  }
+
+  .navbar-toggle {
+    border: 0;
+    &:hover {
+      background-color: $color3;
+    }
+
+    .icon-bar {
+      background-color: $color5;
+    }
+  }
+
+  .navbar-collapse {
+    border-color: $color5;
+  }
+
+  .navbar-nav > li > a {
+    color: $color2;
+    &:active, &:hover {
+      color: $color4;
+    }
+  }
+
+  .navbar-nav > li .faux-link {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color: $color2;
+
+  }
+
+  .navbar-nav form.link a {
+    &:active, &:hover {
+      text-decoration: none;
+      color: $color4;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-ccs {
+    border-radius: 0;
+    .navbar-nav > li .faux-link,
+    .navbar-nav form.link {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+}
+
+.navbar-nav {
+  form.link {
+    line-height: 20px;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+  }
+}
+
+.logo {
+  display: inline-block;
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+
+  h1 {
+    color: #ffffff;
+    font-size: 3em;
+  }
+}
+
+
