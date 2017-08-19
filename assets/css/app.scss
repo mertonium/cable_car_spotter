@@ -110,11 +110,21 @@ header {
     }
   }
 
-  .navbar-nav > li > .faux-link {
+  .navbar-nav > li .faux-link {
     position: relative;
     display: block;
     padding: 10px 15px;
     color: $color2;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-ccs {
+    .navbar-nav > li .faux-link,
+    .navbar-nav form.link {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
   }
 }
 
