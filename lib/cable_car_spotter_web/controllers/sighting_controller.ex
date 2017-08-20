@@ -88,6 +88,15 @@ defmodule CableCarSpotterWeb.SightingController do
     |> redirect(to: sighting_path(conn, :index, conn.assigns.locale))
   end
 
+  def punchcard(conn, _params, user) do
+    cable_cars = CableCar
+                 |> CableCar.with_user_sightings(user)
+                 |> CableCar.by_car_number
+                 |> Repo.all
+
+    render(conn, "punchcard.html", cable_cars: cable_cars)
+  end
+
   def action(conn, _) do
     apply(__MODULE__, action_name(conn),
       [conn, conn.params, conn.assigns.current_user])

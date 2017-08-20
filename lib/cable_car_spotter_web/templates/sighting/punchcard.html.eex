@@ -1,0 +1,27 @@
+<h2>
+  <%= gettext "Cable Car Punchcard" %>
+</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= gettext "Car Number" %></th>
+      <th><%= gettext "Sightings" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for cc <- @cable_cars do %>
+      <tr>
+        <td><%= cc.car_number %></td>
+        <td>
+          <%= for sighting <- cc.sightings do %>
+            <%= link to: sighting_path(@conn, :show, @locale, sighting) do  %>
+              <span class="glyphicon glyphicon-ok sighting-check" aria-hidden="true"></span>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

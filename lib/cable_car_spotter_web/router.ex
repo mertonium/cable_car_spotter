@@ -27,6 +27,7 @@ defmodule CableCarSpotterWeb.Router do
     resources "/c", CableCarController, only: [:index, :show]
     resources "/u", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :delete]
+    get "/punchcard", SightingController, :punchcard
     resources "/s", SightingController
   end
 

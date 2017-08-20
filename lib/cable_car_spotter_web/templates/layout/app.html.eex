@@ -55,6 +55,9 @@
                     <%= link gettext("Your sightings"), to: sighting_path(@conn, :index, @locale) %>
                   </li>
                   <li>
+                    <%= link gettext("Your punchcard"), to: sighting_path(@conn, :punchcard, @locale) %>
+                  </li>
+                  <li>
                     <%= link gettext("Log out"), to: session_path(@conn, :delete, @locale, @current_user), method: "delete" %>
                   </li>
                 <% else %>

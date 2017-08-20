@@ -5,6 +5,7 @@ defmodule CableCarSpotter.CableCar do
     field :car_number, :string
     field :description, :string
     belongs_to :line, CableCarSpotter.Line
+    has_many :sightings, CableCarSpotter.Sighting
 
     timestamps()
   end
@@ -25,5 +26,10 @@ defmodule CableCarSpotter.CableCar do
 
   def by_car_number(query) do
     from c in query, order_by: fragment("split_part(car_number, ' ', 2)::int")
+  end
+
+  def with_user_sightings(query, user) do
+    sightings = from(s in CableCarSpotter.Sighting, where: [user_id: ^user.id], order_by: [desc: s.inserted_at])
+    from query, preload: [sightings: ^sightings]
   end
 end
